@@ -5,3 +5,10 @@ C:\Users\natal\OneDrive\Рабочий стол\KPI IP-81\2 курс 2019-20\4и
 C:\Users\natal\OneDrive\Рабочий стол\KPI IP-81\2 курс 2019-20\4ий семестр\CourseWork\Figures\Figures\obj\Debug\Figures.csproj.CoreCompileInputs.cache
 C:\Users\natal\OneDrive\Рабочий стол\KPI IP-81\2 курс 2019-20\4ий семестр\CourseWork\Figures\Figures\obj\Debug\Figures.exe
 C:\Users\natal\OneDrive\Рабочий стол\KPI IP-81\2 курс 2019-20\4ий семестр\CourseWork\Figures\Figures\obj\Debug\Figures.pdb
+D:\CourseWork\Figures\Figures\bin\Debug\Figures.exe.config
+D:\CourseWork\Figures\Figures\bin\Debug\Figures.exe
+D:\CourseWork\Figures\Figures\bin\Debug\Figures.pdb
+D:\CourseWork\Figures\Figures\obj\Debug\Figures.csprojAssemblyReference.cache
+D:\CourseWork\Figures\Figures\obj\Debug\Figures.csproj.CoreCompileInputs.cache
+D:\CourseWork\Figures\Figures\obj\Debug\Figures.exe
+D:\CourseWork\Figures\Figures\obj\Debug\Figures.pdb

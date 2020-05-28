@@ -10,7 +10,10 @@ namespace Figures
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
+            string serverName = "DESKTOP-LTPHR86", dbName = "Figures";
+            Connection con = new Connection(serverName, dbName);
+
+            Console.WriteLine(con.ConnectionString);
             Console.ReadKey();
         }
     }
