@@ -45,14 +45,27 @@ namespace Figures
         {
             connection.Open();
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void ConnectionClose()
         {
             connection.Close();
         }
+        /// <summary>
+        /// return SqlConnection to DB
+        /// </summary>
+        /// <returns>qwrqwef</returns>
         public SqlConnection GetConnection()
         {
             return sqlConnection;
         }
+        /// <summary>
+        /// return SqlConnection to DB
+        /// </summary>
+        /// <param name="serverName"> name of SQL Server</param>
+        /// <param name="DBName"> name of your Data Base</param>
+        /// <returns></returns>
         public static SqlConnection GetConnection(string serverName, string DBName)
         {
             if (connection == null)
