@@ -19,7 +19,15 @@ namespace Figures
             }
         }
         private string connectionString;
+        /// <summary>
+        /// string for connection to Data Base
+        /// </summary>
         public string ConnectionString => connectionString;
+        /// <summary>
+        /// Create new connection class
+        /// </summary>
+        /// <param name="serverName">name of SQL server</param>
+        /// <param name="DBName">name of Data base</param>
         public Connection(string serverName, string DBName)
         {
             connectionString = @"Data Source =" + serverName + ";Initial Catalog=" + DBName + ";Integrated Security=True";
@@ -41,31 +49,34 @@ namespace Figures
             }
 
         }
+        /// <summary>
+        /// Open Sql connection
+        /// </summary>
         public void ConnectionOpen()
         {
             connection.Open();
         }
         /// <summary>
-        /// 
+        /// Close this SQL connection
         /// </summary>
         public void ConnectionClose()
         {
             connection.Close();
         }
         /// <summary>
-        /// return SqlConnection to DB
+        ///  return SqlConnection to DB
         /// </summary>
-        /// <returns>qwrqwef</returns>
+        /// <returns></returns>
         public SqlConnection GetConnection()
         {
             return sqlConnection;
         }
         /// <summary>
-        /// return SqlConnection to DB
+        /// Create and return new SqlConnection to DB or return existed SqlConnection
         /// </summary>
         /// <param name="serverName"> name of SQL Server</param>
         /// <param name="DBName"> name of your Data Base</param>
-        /// <returns></returns>
+        /// <returns>SqlConnection to DB</returns>
         public static SqlConnection GetConnection(string serverName, string DBName)
         {
             if (connection == null)

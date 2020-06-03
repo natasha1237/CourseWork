@@ -1,19 +1,23 @@
-CREATE TABLE figures 
+CREATE TABLE figures2d
 ( id int Primary Key Identity(1,1),
   name varchar(30),
   type varchar(30)
 );
 
-CREATE TABLE coordinates 
+CREATE TABLE figures3d
 ( id int Primary Key Identity(1,1),
-  x int,
-  y int,
-  z int,
-  figure_id int Foreign Key REFERENCES figures(id)  on delete cascade
+  name varchar(30),
+  type varchar(30),
+  base int foreign key references figures2d(id) on delete cascade,
+  height int
 );
-insert into coordinates(x, figure_id) values(3,1)
-select * from coordinates
-delete from figures
-where id=1
+
+CREATE TABLE parameters2d
+( id int Primary Key Identity(1,1),
+name varchar(10),
+size float,
+type varchar(10),
+ figure_id int foreign key references figures2d(id) on delete cascade
+)
 
 

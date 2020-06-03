@@ -44,7 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="DataBase.cs" />
+    <Compile Include="IEdge.cs" />
+    <Compile Include="IAngle.cs" />
     <Compile Include="IDataBase.cs" />
+    <Compile Include="IFigure.cs" />
+    <Compile Include="IFigure2D.cs" />
+    <Compile Include="IFigure3D.cs" />
+    <Compile Include="IParameter.cs" />
+    <Compile Include="IPrinter.cs" />
+    <Compile Include="PrinterConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

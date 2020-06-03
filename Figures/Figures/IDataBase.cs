@@ -13,15 +13,15 @@ namespace Figures
         /// <summary>
         /// Sql Connection to Data Base
         /// </summary>
-        SqlConnection Connection { get; }
+        SqlConnection GetConnection { get; }
         /// <summary>
         /// Add data to Data Base(insert)
         /// </summary>
         /// <param name="command">Sql query for insert data to table</param>
-        /// <returns>Created Id in Data Base table</returns>
+        /// <returns>Created Id in Data Base table or -1</returns>
         int Add(string command);
         /// <summary>
-        /// Get data from Data Base 
+        /// Get data from Data Base  
         /// </summary>
         /// <param name="command">Sql query for getting data from table </param>
         /// <returns>Data Set with selected data</returns>
