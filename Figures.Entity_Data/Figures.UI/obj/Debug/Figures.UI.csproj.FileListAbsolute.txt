@@ -1,0 +1,13 @@
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.UI.exe.config
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.UI.exe
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.UI.pdb
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.csproj.CoreCompileInputs.cache
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.exe
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.pdb
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.csprojAssemblyReference.cache
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Entity_Data.dll
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\EntityFramework.dll
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Entity_Data.pdb
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Entity_Data.dll.config
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\bin\Debug\EntityFramework.xml
+C:\Users\natal\source\repos\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.csproj.CopyComplete
