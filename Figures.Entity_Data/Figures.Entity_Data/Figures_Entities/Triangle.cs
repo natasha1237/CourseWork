@@ -6,8 +6,6 @@
     public class Triangle : IFigure2D
     {
         float a, b, c; // Sides of a triangle
-        float area, perim;
-        int top, edge;
 
         public Triangle() { }
 
@@ -24,36 +22,18 @@
         public float B { get { return b; } set { b = value; } }
         public float C { get { return c; } set { c = value; } }
 
-        public float Ar { get { return area; } set { area = value; } }
-        public float Perim { get { return perim; } set { perim = value; } }
-        public int Edges { get { return edge; } set { edge = value; } }
-        public int Tops { get { return top; } set { top = value; } }
-
         public float Area()
         {
             double p = Perimeter() / 2;
             double S = System.Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-            area = (float)S;
             return (float)S;
         }
 
-        public float Perimeter()
-        {
-            perim = a + b + c;
-            return perim;
-        }
+        public float Perimeter() => a + b + c;
 
-        public int QuantityOfTops()
-        {
-            top = new float[] { a, b, c }.Length;
-            return top;
-        }
+        public int QuantityOfTops() => new float[] { a, b, c }.Length;
 
-        public int QuantityOfEdges()
-        {
-            edge = new float[] { a, b, c }.Length;
-            return edge;
-        }
+        public int QuantityOfEdges() => new float[] { a, b, c }.Length;
 
         public void InputParameters(IPrinter printer)
         {

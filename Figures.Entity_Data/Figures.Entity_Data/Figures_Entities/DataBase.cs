@@ -1,7 +1,5 @@
 ﻿namespace Figures.Entity_Data
 {
-    using Figures.Entity_Data.Figures_Entities;
-    using System;
     using System.Data;
     using System.Data.SqlClient;
 
@@ -9,28 +7,18 @@
     {
         SqlConnection connection;
 
-        SqlConnection IDataBase.GetConnection => throw new NotImplementedException();
+        SqlConnection IDataBase.GetConnection => connection;
 
-        public DataBase()
+        public DataBase(string serverName, string dbName)
         {
-            connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
+            connection = Connection.GetConnection(serverName, dbName);
         }
 
-        public virtual int Add(string n, string t, params float[] p) // "INSERT INTO TABLENAME(....) VALUES(11,22,33,44,55)"
+        public virtual int Add(string command)
         {
-            Triangle tr = new Triangle
-            {
-                Name = n,
-                Type = t,
-                A = p[0],
-                B = p[1],
-                C = p[2],
-                Ar = p[3],
-                Perim = p[4],
-                Tops = (int)p[5],
-                Edges = (int)p[6],
-            };
-
+            SqlCommand cmd = new SqlCommand(command, connection);
+            int res = cmd.ExecuteNonQuery();
+            return res;
             //DataTable dt = Select(command + ";\nselect SCOPE_IDENTITY()").Tables[0];
             //if (dt.Rows.Count > 0)
             //    return Convert.ToInt32(dt.Rows[0].ItemArray[0]);

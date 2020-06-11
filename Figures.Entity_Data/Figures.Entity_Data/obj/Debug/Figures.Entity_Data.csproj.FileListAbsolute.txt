@@ -10,3 +10,15 @@ C:\Users\natal\source\repos\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\En
 C:\Users\natal\source\repos\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\natal\source\repos\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csprojAssemblyReference.cache
 C:\Users\natal\source\repos\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csproj.CopyComplete
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\Figures.Entity_Data.dll.config
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\Figures.Entity_Data.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\Figures.Entity_Data.pdb
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.xml
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csprojAssemblyReference.cache
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csproj.CoreCompileInputs.cache
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csproj.CopyComplete
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.pdb

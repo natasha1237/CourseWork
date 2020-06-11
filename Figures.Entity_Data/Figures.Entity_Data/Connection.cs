@@ -1,11 +1,12 @@
 ﻿namespace Figures.Entity_Data
 {
-    using System.Configuration;
     using System.Data.SqlClient;
 
     public class Connection
     {
+        string connectionString;
         static SqlConnection connection;
+
         SqlConnection sqlConnection
         {
             get
@@ -15,7 +16,6 @@
             }
         }
 
-        string connectionString;
         /// <summary>
         /// string for connection to Data Base
         /// </summary>
@@ -26,12 +26,9 @@
         /// </summary>
         /// <param name="serverName">name of SQL server</param>
         /// <param name="DBName">name of Data base</param>
-        public Connection(string serverName = "", string DBName = "")
-        {
-            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["connection"].ConnectionString);
-        }
-
-        void Connect()
+        public Connection(string serverName, string DBName) => connectionString = @"Data Source =" + serverName + ";Initial Catalog=" + DBName + ";Integrated Security=True";
+     
+        private void Connect()
         {
             if (connection != null) return;
             try
@@ -45,39 +42,30 @@
         /// <summary>
         /// Open Sql connection
         /// </summary>
-        public void ConnectionOpen()
-        {
-            connection.Open();
-        }
+        public void ConnectionOpen() => connection.Open();
 
         /// <summary>
         /// Close this SQL connection
         /// </summary>
-        public void ConnectionClose()
-        {
-            connection.Close();
-        }
+        public void ConnectionClose() => connection.Close();
 
         /// <summary>
         ///  return SqlConnection to DB
         /// </summary>
         /// <returns></returns>
-        public SqlConnection GetConnection()
+        public SqlConnection GetConnection() => sqlConnection;
+
+        /// <summary>
+        /// Create and return new SqlConnection to DB or return existed SqlConnection
+        /// </summary>
+        /// <param name="serverName"> name of SQL Server</param>
+        /// <param name="DBName"> name of your Data Base</param>
+        /// <returns>SqlConnection to DB</returns>
+        public static SqlConnection GetConnection(string serverName, string DBName)
         {
-            return sqlConnection;
+            if (connection == null) connection = new Connection(serverName, DBName).sqlConnection;
+
+            return connection;
         }
-
-        ///// <summary>
-        ///// Create and return new SqlConnection to DB or return existed SqlConnection
-        ///// </summary>
-        ///// <param name="serverName"> name of SQL Server</param>
-        ///// <param name="DBName"> name of your Data Base</param>
-        ///// <returns>SqlConnection to DB</returns>
-        //public static SqlConnection GetConnection(string serverName, string DBName)
-        //{
-        //    if (connection == null) connection = new Connection(serverName, DBName).sqlConnection;
-
-        //    return connection;
-        //}
     }
 }
