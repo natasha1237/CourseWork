@@ -24,3 +24,5 @@ C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\bin\Debug\
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Entity_Data.dll.config
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\bin\Debug\EntityFramework.xml
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\obj\Debug\Figures.UI.csproj.CopyComplete
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Logic.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.UI\bin\Debug\Figures.Logic.pdb

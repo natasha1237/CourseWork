@@ -17,8 +17,10 @@ C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\b
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.xml
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csprojAssemblyReference.cache
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csproj.CoreCompileInputs.cache
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csproj.CopyComplete
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.dll
 C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.pdb
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\Figures.Logic.dll
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\bin\Debug\Figures.Logic.pdb
+C:\Users\natal\source\repos\CourseWork\Figures.Entity_Data\Figures.Entity_Data\obj\Debug\Figures.Entity_Data.csprojAssemblyReference.cache

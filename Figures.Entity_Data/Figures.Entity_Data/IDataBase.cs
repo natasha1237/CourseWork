@@ -11,8 +11,8 @@
         /// Add data to Data Base(insert)
         /// </summary>
         /// <param name="command">Sql query for insert data to table</param>
-        /// <returns>Created Id in Data Base table or -1</returns>
-        int Add(string command);
+        /// <returns>Message w/ result</returns>
+        string Add(string command);
 
         /// <summary>
         /// Get data from Data Base  

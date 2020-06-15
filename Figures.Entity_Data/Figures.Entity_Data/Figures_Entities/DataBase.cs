@@ -14,11 +14,16 @@
             connection = Connection.GetConnection(serverName, dbName);
         }
 
-        public virtual int Add(string command)
+        public virtual string Add(string command)
         {
+            string msg = string.Empty;
             SqlCommand cmd = new SqlCommand(command, connection);
             int res = cmd.ExecuteNonQuery();
-            return res;
+            if (res == 0)
+                msg = "..Insert has been failed..Something went wrong...";
+            else
+                msg = "Insert was Successfully!Congratulation!!!";
+            return msg;
             //DataTable dt = Select(command + ";\nselect SCOPE_IDENTITY()").Tables[0];
             //if (dt.Rows.Count > 0)
             //    return Convert.ToInt32(dt.Rows[0].ItemArray[0]);
@@ -29,7 +34,6 @@
         {
             SqlCommand sqlCommand = new SqlCommand(command, connection);
             int number = sqlCommand.ExecuteNonQuery();
-
             return number;
         }
 

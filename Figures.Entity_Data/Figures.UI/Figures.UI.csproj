@@ -36,7 +36,11 @@
     <Reference Include="Figures.Entity_Data">
       <HintPath>..\Figures.Entity_Data\bin\Debug\Figures.Entity_Data.dll</HintPath>
     </Reference>
+    <Reference Include="Figures.Logic">
+      <HintPath>..\Figures.Logic\bin\Debug\Figures.Logic.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

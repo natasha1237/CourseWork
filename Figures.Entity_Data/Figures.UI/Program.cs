@@ -1,22 +1,23 @@
-﻿using Figures.Entity_Data;
-using Figures.Entity_Data.Figures_Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Figures.UI
+﻿namespace Figures.UI
 {
+    using System;
+    using Figures.Logic;
+    using Figures.Entity_Data;
+    using System.Configuration;
+    using System.Collections.Generic;
+    using Figures.Entity_Data.Figures_Entities;
+
     class Program
     {
+        static Random rand = new Random();
+
         static void Main(string[] args)
         {
-            DataBase db = new DataBase("DESKTOP-LTPHR86", "Figures");
+            DataBase db = new DataBase(@"DESKTOP-LTPHR86\CLOVER", "Figures");
 
-            string name, type;
+            string name, type, result = "";
             float a, b, c, area, perim;
-            int tops, adges, result = 0, choice = 0;
+            int tops, edges, choice = 0, result1 = 0;
 
             do
             {
@@ -26,21 +27,26 @@ namespace Figures.UI
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("1 - Add new Triangle in the table:");
-                        Console.WriteLine("2 - Show All Triangle from the table");
-                        Console.WriteLine("3 - Edit Triangle by Id");
-                        Console.WriteLine("4 - Delete Triangle by Id");
+                        Console.WriteLine("1 - Add new triangle in the table:");
+                        Console.WriteLine("2 - Show all triangles from the table");
+                        Console.WriteLine("3 - Edit triangle by Id");
+                        Console.WriteLine("4 - Delete triangle by Id");
                         Console.WriteLine("5 - Return back");
-                        Console.Write("\nChoice any one the Figure..");
+                        Console.Write("\nChose any one of the figures..");
                         int choice1 = int.Parse(Console.ReadLine());
                         switch (choice1)
                         {
                             case 1:
                                 Console.Clear();                              
-                                Triangle tr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out adges);
+                                Triangle tr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out edges);
                                 try
                                 {
-                                    result = db.Add($"insert into Triangles(Name,Type,A,B,C,Area,Perimeter,Tops,Adges) values(N'{name}',N'{type}',{a},{b},{c},{area},{perim},{tops},{adges})");
+                                    result = db.Add($"insert into Triangles(Name,Type,A,B,C,Area,Perimeter,Tops,Edges) values('{name}','{type}',{a},{b},{c},{area},{perim},{tops},{edges})");
+
+                                    Console.ForegroundColor = (result == "Insert was Successfully!Congratulation!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                    Console.WriteLine(result);
+                                    Console.ResetColor();
+                                    Pause();
                                 }
                                 catch(Exception ex)
                                 {
@@ -49,34 +55,32 @@ namespace Figures.UI
                                     Console.ResetColor();
                                     Pause();
                                 }
-                                if(result == 1)
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("\nTriangle has Added successfully!!!");
-                                    Console.ResetColor();
-                                    Pause();
-                                }
-                                else
-                                {
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine($"\nThe method of an Add() return {result}\nSomething went wrong...Try to fix this exception!");
-                                    Console.ResetColor();
-                                    Pause();
-                                }
                                 break;
                             case 2:
-
+                                Console.Clear();
+                                string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+                                List<Triangle> list = ReadFromDatabase.ReadAllTriangles(conn);
+                                for(int i = 0; i < list.Count; i++)
+                                {
+                                    Console.WriteLine(new string('-', 120));
+                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.WriteLine($"\n{i + 1} Triangle:\n");
+                                    Console.ForegroundColor = RandColors()[rand.Next(0, 5)];
+                                    Console.WriteLine(list[i]);
+                                    Console.ResetColor();
+                                    Console.WriteLine("\n"+new string('-', 120));
+                                }
                                 Pause();
                                 break;
                             case 3:
-                                Console.Write("Input any Id of triangle to Update: ");
+                                Console.Write("Enter any id of triangle to Update: ");
                                 int editId = int.Parse(Console.ReadLine());
 
-                                Triangle editTr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out adges);
-                                string editQuery = $"Update Triangles SET {name},{type},{a},{b},{c},{area},{perim},{tops},{adges} where Id={editId}";
+                                Triangle editTr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out edges);
+                                string editQuery = $"Update Triangles SET Name='{name}',Type='{type}',A={a},B={b},C={c},Area={area},Perimeter={perim},Tops={tops},Edges={edges} where Id={editId}";
                                 try
                                 {
-                                    result = db.Update(editQuery);
+                                    result1 = db.Update(editQuery);
                                 }
                                 catch (Exception ex)
                                 {
@@ -85,28 +89,28 @@ namespace Figures.UI
                                     Console.ResetColor();
                                     Pause();
                                 }
-                                if (result == 1)
+                                if (result1 == 1)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("\nTriangle has Updated successfully!!!");
+                                    Console.WriteLine("\nTriangle has updated successfully!!!");
                                     Console.ResetColor();
                                     Pause();
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine($"\nThe method of an Update() return {result}\nSomething went wrong...Try to fix this exception!");
+                                    Console.WriteLine($"\nThe method of an Update() return {result1}\nSomething went wrong...Try to fix this!");
                                     Console.ResetColor();
                                     Pause();
                                 }
                                 break;
                             case 4:
-                                Console.Write("Input any Id of triangle to Delete from the table: ");
+                                Console.Write("Enter any id of triangle to Delete from the table: ");
                                 int deleteId = int.Parse(Console.ReadLine());
                                 string delQuery = $"Delete from Triangles where Id={deleteId}";
                                 try
                                 {
-                                    result = db.Delete(delQuery);
+                                    result1 = db.Delete(delQuery);
                                 }
                                 catch (Exception ex)
                                 {
@@ -115,17 +119,17 @@ namespace Figures.UI
                                     Console.ResetColor();
                                     Pause();
                                 }
-                                if (result == 1)
+                                if (result1 == 1)
                                 {
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("\nTriangle has Deleted successfully!!!");
+                                    Console.WriteLine("\nTriangle has deleted successfully!!!");
                                     Console.ResetColor();
                                     Pause();
                                 }
                                 else
                                 {
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine($"\nThe method of an Delete() return {result}\nSomething went wrong...Try to fix this exception!");
+                                    Console.WriteLine($"\nThe method of an Delete() return {result}\nSomething went wrong...Try to fix this!");
                                     Console.ResetColor();
                                     Pause();
                                 }
@@ -155,7 +159,7 @@ namespace Figures.UI
             Console.WriteLine("0 - Exit");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\n" + new string('-', 120));
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write("Choice any one the Figure..");
             int choice = int.Parse(Console.ReadLine());
             Console.ResetColor();
@@ -198,6 +202,19 @@ namespace Figures.UI
             Console.Write("\n\n\t\t\t\t\t\tPress any key to continue...");
             Console.ReadKey(true);
             Console.ResetColor();
+        }
+
+        static ConsoleColor[] RandColors()
+        {
+            return new ConsoleColor[]
+            {
+                ConsoleColor.Red,
+                ConsoleColor.Green,
+                ConsoleColor.Yellow,
+                ConsoleColor.Blue,
+                ConsoleColor.Cyan,
+                ConsoleColor.DarkBlue
+            };
         }
     }
 }
