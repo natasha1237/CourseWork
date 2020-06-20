@@ -1,0 +1,12 @@
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\FiguresApp.dll.config
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\FiguresApp.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\FiguresApp.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\EntityFramework.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\EntityFramework.xml
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\obj\Debug\Figures.DataEntity.csprojAssemblyReference.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\obj\Debug\Figures.DataEntity.csproj.CoreCompileInputs.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\obj\Debug\Figures.DataEntity.csproj.CopyComplete
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\obj\Debug\FiguresApp.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\FiguresApp\obj\Debug\FiguresApp.pdb

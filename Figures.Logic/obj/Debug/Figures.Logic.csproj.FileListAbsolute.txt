@@ -1,0 +1,12 @@
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\Figures.Logic.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\Figures.Logic.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\FiguresApp.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\EntityFramework.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\FiguresApp.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\FiguresApp.dll.config
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\bin\Debug\EntityFramework.xml
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\obj\Debug\Figures.Logic.csprojAssemblyReference.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\obj\Debug\Figures.Logic.csproj.CoreCompileInputs.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\obj\Debug\Figures.Logic.csproj.CopyComplete
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\obj\Debug\Figures.Logic.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.Logic\obj\Debug\Figures.Logic.pdb
