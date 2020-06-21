@@ -1,6 +1,6 @@
 ﻿namespace FiguresApp.Figures_Entities
 {
-    class Parallelepiped : Figure3D
+    public class Parallelepiped : Figure3D
     {
         public Parallelepiped(float a, float b, float h) : base(a, b, h) { }
 

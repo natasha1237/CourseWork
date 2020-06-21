@@ -22,7 +22,7 @@
                         _2d_Figures.SelectFigure(db, sub_choice);
                         break;
                     case 3:
-
+                        _3d_Figures.TopicCube(db);
                         break;
                     case 4:
 

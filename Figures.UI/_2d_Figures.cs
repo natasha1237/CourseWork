@@ -12,7 +12,7 @@
         static Random rand = new Random();
         static string result = "";
         static string name, type;
-        static float a, b, c, h, area, perim;
+        static float a, b, c, d, h, area, perim;
         static int tops, edges, resultInt = 0, choice;
         #endregion
 
@@ -181,7 +181,7 @@
         }
         #endregion
 
-        #region Square (Switch Menu):
+        #region Quadrangles (Switch Menu):
         public static void SelectFigure(DataBase db, int figure)
         {
             switch (figure)
@@ -206,7 +206,7 @@
                             Square tr = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"insert into Squares([Name],[Type],[A],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Squares([Name],[Type],[A],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},'{area}','{perim}',{tops},{edges})");
 
                                 Console.ForegroundColor = (result == "Insert was Successfull!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
@@ -238,7 +238,7 @@
                             Pause();
                             break;
                         case 3:
-                            Console.Write("Enter any id of Square to Update: ");
+                            Console.Write("Enter any id of square to Update: ");
                             int editId = int.Parse(Console.ReadLine());
 
                             Square editSq = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
@@ -257,7 +257,7 @@
                             if (result1 == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\nTriangle has updated successfully!!!");
+                                Console.WriteLine("\nSquare has updated successfully!!!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -304,7 +304,7 @@
                     break;
                 case 2:
                     Console.Clear();
-                    Console.WriteLine("1 - Add new parallelogram in the table:");
+                    Console.WriteLine("1 - Add new parallelogram into the table:");
                     Console.WriteLine("2 - Show all parallelograms from the table");
                     Console.WriteLine("3 - Edit parallelogram by Id");
                     Console.WriteLine("4 - Delete parallelogram by Id");
@@ -318,9 +318,9 @@
                             Parallelogram pr = SetParallelogram(out name, out type, out a, out b, out h, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"insert into Squares([Name],[Type],[A],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Parallelograms([Name],[Type],[A],[B],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},{h},'{area}','{perim}',{tops},{edges})");
 
-                                Console.ForegroundColor = (result == "Insert was Successfull!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
                                 Console.ResetColor();
                                 Pause();
@@ -336,12 +336,12 @@
                         case 2:
                             Console.Clear();
                             string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
-                            List<Square> list = ReadFiguresFromDB.ReadAllSquares(conn);
+                            List<Parallelogram> list = ReadFiguresFromDB.ReadAllParallelograms(conn);
                             for (int i = 0; i < list.Count; i++)
                             {
                                 Console.WriteLine(new string('-', 120));
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Console.WriteLine($"\n{i + 1} Square:\n");
+                                Console.WriteLine($"\n{i + 1} Parallelogram:\n");
                                 Console.ForegroundColor = RandColors()[rand.Next(0, 5)];
                                 Console.WriteLine(list[i]);
                                 Console.ResetColor();
@@ -350,11 +350,11 @@
                             Pause();
                             break;
                         case 3:
-                            Console.Write("Enter any id of Square to Update: ");
+                            Console.Write("Enter any id of parallelogram to Update: ");
                             int editId = int.Parse(Console.ReadLine());
 
-                            Square editSq = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Squares SET Name='{name}',Type='{type}',A={a} where Id={editId}";
+                            Parallelogram editPar = SetParallelogram(out name, out type, out a, out b, out h, out area, out perim, out tops, out edges);
+                            string editQuery = $"Update Parallelograms SET Name='{name}',Type='{type}',A={a}, B={b}, H={h},here Id={editId}";
                             try
                             {
                                 result1 = db.Update(editQuery);
@@ -369,7 +369,7 @@
                             if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\nTriangle has updated successfully!!!");
+                                Console.WriteLine("\nParallelogram has updated successfully!!!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -382,9 +382,9 @@
                             }
                             break;
                         case 4:
-                            Console.Write("Enter any id of square to Delete from the table: ");
+                            Console.Write("Enter any id of parallelogram to Delete from the table: ");
                             int deleteId = int.Parse(Console.ReadLine());
-                            string delQuery = $"Delete from Squares where Id={deleteId}";
+                            string delQuery = $"Delete from Parallelograms where Id={deleteId}";
                             try
                             {
                                 result1 = db.Delete(delQuery);
@@ -399,7 +399,340 @@
                             if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\nSquare has deleted successfully!!!");
+                                Console.WriteLine("\nParallelogram has deleted successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                    }
+                    break;
+                case 3:
+                    Console.Clear();
+                    Console.WriteLine("1 - Add new rectangle into the table:");
+                    Console.WriteLine("2 - Show all rectangles from the table");
+                    Console.WriteLine("3 - Edit rectangle by Id");
+                    Console.WriteLine("4 - Delete rectangle by Id");
+                    Console.WriteLine("5 - Return back");
+                    Console.Write("\nChoose any one of the figures..");
+                    choice = int.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.Clear();
+                            Rectangle rct = SetRectangle(out name, out type, out a, out b, out area, out perim, out tops, out edges);
+                            try
+                            {
+                                result = db.Add($"Insert into Rectangles([Name],[Type],[A],[B],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},'{area}','{perim}',{tops},{edges})");
+
+                                Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.WriteLine(result);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+                            List<Rectangle> list = ReadFiguresFromDB.ReadAllRectangles(conn);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                Console.WriteLine(new string('-', 120));
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine($"\n{i + 1} Rectangle:\n");
+                                Console.ForegroundColor = RandColors()[rand.Next(0, 5)];
+                                Console.WriteLine(list[i]);
+                                Console.ResetColor();
+                                Console.WriteLine("\n" + new string('-', 120));
+                            }
+                            Pause();
+                            break;
+                        case 3:
+                            Console.Write("Enter any id of rectangle to Update: ");
+                            int editId = int.Parse(Console.ReadLine());
+
+                            Rectangle editRct = SetRectangle(out name, out type, out a, out b, out area, out perim, out tops, out edges);
+                            string editQuery = $"Update Rectangles SET Name='{name}',Type='{type}',A={a}, B={b}, here Id={editId}";
+                            try
+                            {
+                                result1 = db.Update(editQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nRectangles has updated successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Update() return {resultInt}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 4:
+                            Console.Write("Enter any id of rectangle to Delete from the table: ");
+                            int deleteId = int.Parse(Console.ReadLine());
+                            string delQuery = $"Delete from Rectangles where Id={deleteId}";
+                            try
+                            {
+                                result1 = db.Delete(delQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nRectangle has deleted successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                    }
+                    break;
+                case 4:
+                    Console.Clear();
+                    Console.WriteLine("1 - Add new rhomb into the table:");
+                    Console.WriteLine("2 - Show all rhombs from the table");
+                    Console.WriteLine("3 - Edit rhomb by Id");
+                    Console.WriteLine("4 - Delete rhomb by Id");
+                    Console.WriteLine("5 - Return back");
+                    Console.Write("\nChoose any one of the figures..");
+                    choice = int.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.Clear();
+                            Rhomb rhmb = SetRhomb(out name, out type, out a, out h, out area, out perim, out tops, out edges);
+                            try
+                            {
+                                result = db.Add($"Insert into Rhombs([Name],[Type],[A],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{h},'{area}','{perim}',{tops},{edges})");
+
+                                Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.WriteLine(result);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+                            List<Rhomb> list = ReadFiguresFromDB.ReadAllRhombs(conn);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                Console.WriteLine(new string('-', 120));
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine($"\n{i + 1} Rhomb:\n");
+                                Console.ForegroundColor = RandColors()[rand.Next(0, 5)];
+                                Console.WriteLine(list[i]);
+                                Console.ResetColor();
+                                Console.WriteLine("\n" + new string('-', 120));
+                            }
+                            Pause();
+                            break;
+                        case 3:
+                            Console.Write("Enter any id of rhomb to Update: ");
+                            int editId = int.Parse(Console.ReadLine());
+
+                            Rhomb editRhmb = SetRhomb(out name, out type, out a, out h, out area, out perim, out tops, out edges);
+                            string editQuery = $"Update Rhombs SET Name='{name}',Type='{type}',A={a}, H={h}, here Id={editId}";
+                            try
+                            {
+                                result1 = db.Update(editQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nRhombs has updated successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Update() return {resultInt}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 4:
+                            Console.Write("Enter any id of rhomb to Delete from the table: ");
+                            int deleteId = int.Parse(Console.ReadLine());
+                            string delQuery = $"Delete from Rhombs where Id={deleteId}";
+                            try
+                            {
+                                result1 = db.Delete(delQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nRhomb has deleted successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                    }
+                    break;
+                case 5:
+                    Console.Clear();
+                    Console.WriteLine("1 - Add new trapeze into the table:");
+                    Console.WriteLine("2 - Show all trapezes from the table");
+                    Console.WriteLine("3 - Edit trapeze by Id");
+                    Console.WriteLine("4 - Delete trapeze by Id");
+                    Console.WriteLine("5 - Return back");
+                    Console.Write("\nChoose any one of the figures..");
+                    choice = int.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.Clear();
+                            Trapeze trpz = SetTrapeze(out name, out type, out a, out b, out c, out d, out h, out area, out perim, out tops, out edges);
+                            try
+                            {
+                                result = db.Add($"Insert into Trapezes([Name],[Type],[A],[B],[C],[D],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},{c},{d},{h},'{area}','{perim}',{tops},{edges})");
+
+                                Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.WriteLine(result);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 2:
+                            Console.Clear();
+                            string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
+                            List<Trapeze> list = ReadFiguresFromDB.ReadAllTrapezes(conn);
+                            for (int i = 0; i < list.Count; i++)
+                            {
+                                Console.WriteLine(new string('-', 120));
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Console.WriteLine($"\n{i + 1} Trapeze:\n");
+                                Console.ForegroundColor = RandColors()[rand.Next(0, 5)];
+                                Console.WriteLine(list[i]);
+                                Console.ResetColor();
+                                Console.WriteLine("\n" + new string('-', 120));
+                            }
+                            Pause();
+                            break;
+                        case 3:
+                            Console.Write("Enter any id of trapeze to Update: ");
+                            int editId = int.Parse(Console.ReadLine());
+
+                            Trapeze editTrpz = SetTrapeze(out name, out type, out a, out b, out c, out d, out h, out area, out perim, out tops, out edges);
+                            string editQuery = $"Update Trapezes SET Name='{name}',Type='{type}',A={a}, B={b}, C={c}, D={d}, H={h}, here Id={editId}";
+                            try
+                            {
+                                result1 = db.Update(editQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nRTrapezes has updated successfully!!!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            else
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine($"\nThe method of Update() return {resultInt}\nSomething went wrong...Try to fix this!");
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            break;
+                        case 4:
+                            Console.Write("Enter any id of trapeze to Delete from the table: ");
+                            int deleteId = int.Parse(Console.ReadLine());
+                            string delQuery = $"Delete from Trapezes where Id={deleteId}";
+                            try
+                            {
+                                result1 = db.Delete(delQuery);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ResetColor();
+                                Pause();
+                            }
+                            if (resultInt == 1)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine("\nTrapeze has deleted successfully!!!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -417,10 +750,6 @@
         }
         #endregion
 
-        #region 3 - 3D Figures:
-
-        #endregion
-
         #region Set Triangle (Method):
         public static Triangle SetTriangle(out string name, out string type, out float a, out float b, out float c,
        out float area, out float perim, out int tops, out int edges)
@@ -431,7 +760,7 @@
             Console.Write("Set Type of Triangle: ");
             type = Console.ReadLine();
 
-            Console.Write("Enter 3 sides of a triangle:\n");
+            Console.Write("Enter 3 sides of triangle:\n");
             Console.Write("a: ");
             a = float.Parse(Console.ReadLine());
             Console.Write("b: ");

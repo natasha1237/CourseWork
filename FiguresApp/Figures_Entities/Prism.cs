@@ -1,56 +1,38 @@
 ﻿namespace FiguresApp.Figures_Entities
 {
-    using Figures.EntityData;
-    using Figures.EntityData._2D_Figures;
-    using Figures.EntityData._3D_Figures;
-
-    class Prism : IFigure3D
+    public class Prism : Figure3D
     {
-        public string Name { get; }
-        public string Type { get; }
+        public Prism(float a, float b,float c, float h) : base(a, b, c, h) { }
 
-        public IFigure2D Base { get; }
-        public IEdge Height { get; }
-        
-        public Prism(IFigure2D Base, IEdge Height)
-        {
-            this.Base = Base;
-            this.Height = Height;
-        }
+        public override int Id { get; set; }
+        public override string Name { get; set; }
+        public override string Type { get; set; }
+        public override float A { get => a; set { a = value; } }
+        public override float H { get => h; set { h = value; } }
+        public override float B { get => b; set { b = value; } }
+        public override float C { get => c; set { c = value; } }
+        public override float Volumee { get { return volume; } }
+        public override float Areaa { get { return area; } }
+        public override int Sides { get { return sides; } }
+        public override int Edges { get { return edges; } }
+        public override int Tops { get { return tops; } }
 
-        public float Volume()
+        // Methods overrride:
+        public override float Volume()
         {
             double p = (a + b + c) / 2;
             double S = System.Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-            areaBase = (float)S;
-            Volume = areaBase * Height;
-           
+            float areaBase =(float)S;
+            return volume = areaBase * h;
         }
-        public float Area()
+        public override float Area()
         {
-            int sideArea;
-            sideArea = ((a + b) * 2) * Height;
-            Area = sideArea + 2 * (a * b);
+            float sideArea = ((a + b) * 2) * h;
+            return area = sideArea + 2 * (a * b);
         }
-
-        public int QuantityOfSides()
-        {
-            return 5;
-        }
-
-        public int QuantityOfTops()
-        {
-            return 6;
-        }
-
-        public int QuantityOfEdges() // ребро
-        {
-            return 9;
-        }
-
-        public void InputParameters(IPrinter printer)
-        {
-
-        }
+        public override int QuantityOfSides() => 5;
+        public override int QuantityOfTops() => 6;
+        public override int QuantityOfEdges() => 9;
+       
     }
 }
