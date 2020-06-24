@@ -4,6 +4,6 @@
 
     public interface IFigure2D : IFigure
     {
-        float Perimeter();
+        double Perimeter();
     }
 }

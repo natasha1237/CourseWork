@@ -6,13 +6,13 @@
 
     public class Triangle : IFigure2D
     {
-        float a, b, c; // Sides of a triangle
-        float area, perimeter;
+        double a, b, c; // Sides of a triangle
+        double area, perimeter;
         int tops, edges;
 
         public Triangle() { }
 
-        public Triangle(float a, float b, float c)
+        public Triangle(double a, double b, double c)
         {
             this.a = a;
             this.b = b;
@@ -22,39 +22,31 @@
         public int Id { get; set; }
         public string Name { get; set; } 
         public string Type { get; set; }
-        public float A { get { return a; } set { a = value; } }
-        public float B { get { return b; } set { b = value; } }
-        public float C { get { return c; } set { c = value; } }
+        public double A { get { return a; } set { a = value; } }
+        public double B { get { return b; } set { b = value; } }
+        public double C { get { return c; } set { c = value; } }
 
-        public float Areaa { get { return area; } set { area = value; } }
-        public float Perim { get { return perimeter; } set { perimeter = value; } }
+        public double Areaa { get { return area; } set { area = value; } }
+        public double Perim { get { return perimeter; } set { perimeter = value; } }
         public int Tops { get { return tops; } set { tops = value; } }
         public int Edges { get { return edges; } set { edges = value; } }
 
-        public float Area()
+        public double Area()
         {
             double p = Perimeter() / 2;
             double S = System.Math.Sqrt(p * (p - a) * (p - b) * (p - c));
-            area = (float)S;
-            return (float)S;
+            area = (double)S;
+            return (double)S;
         }
 
-        public float Perimeter() => perimeter = a + b + c;
+        public double Perimeter() => perimeter = a + b + c;
 
-        public int QuantityOfTops() => tops = new float[] { a, b, c }.Length;
-
-        public int QuantityOfEdges() => edges = new float[] { a, b, c }.Length;
-
-        public void InputParameters(IPrinter printer)
-        {
-
-        }
-
-        public IEnumerable<IParameter> Parameters { get; set; }
-
+        public int QuantityOfTops() => tops = new double[] { a, b, c }.Length;
+        public int QuantityOfEdges() => edges = new double[] { a, b, c }.Length;
+        public virtual string Info() => "Triangle";
         public override string ToString()
         {
-            return $"Id: {Id}\nName: {Name}\nType: {Type}\na: {A}\nb: {B}\nc: {C}\nArea: {Area()}\nPerimeter: {Perimeter()}\nTops: {Tops}\nEdges: {Edges}\n";
+            return $"Id: {Id}\nName: {Name}\nType: {Type}\na: {A}\nb: {B}\nc: {C}\nArea: {Areaa}\nPerimeter: {Perim}\nTops: {Tops}\nEdges: {Edges}\n";
         }
     }
 }

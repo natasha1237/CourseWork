@@ -3,7 +3,7 @@
     public interface IFigure3D : IFigure
     {
         int Id { get; set; }
-        float Volume();
+        double Volume();
         int QuantityOfSides();
     }
 }

@@ -4,7 +4,7 @@
     {
         string Name { get; }
         string Type { get; }
-        float Area();
+        double Area();
         int QuantityOfTops();
         int QuantityOfEdges(); // ребро
     }

@@ -2,6 +2,7 @@
 {
     using System;
     using Figures.Logic;
+    using System.Globalization;
     using System.Configuration;
     using System.Collections.Generic;
     using FiguresApp.Figures_Entities;
@@ -12,13 +13,14 @@
         static Random rand = new Random();
         static string result = "";
         static string name, type;
-        static float a, b, c, d, h, area, perim;
+        static double a, b, c, d, h, area, perim;
         static int tops, edges, resultInt = 0, choice;
         #endregion
 
         #region Main menu:
         public static int Main_Menu()
         {
+            int choice = 0;
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(new string('-', 120));
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -31,12 +33,17 @@
             Console.WriteLine("4 - Pyramid");
             Console.WriteLine("5 - Prism");
             Console.WriteLine("6 - Parallelepiped");
+            Console.WriteLine("7 - Show All Figures Info");
             Console.WriteLine("0 - Exit");
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("\n" + new string('-', 120));
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.Write("Choose any one of the Figures..");
-            int choice = int.Parse(Console.ReadLine());
+            try
+            {
+                choice = int.Parse(Console.ReadLine());
+            }
+            catch { }
             Console.ResetColor();
 
             return choice;
@@ -52,7 +59,7 @@
             Console.WriteLine("3 - Edit triangle by Id");
             Console.WriteLine("4 - Delete triangle by Id");
             Console.WriteLine("5 - Return back");
-            Console.Write("\nChoose any one of the figures..");
+            Console.Write("\nPlease make your choice..");
             int choice1 = int.Parse(Console.ReadLine());
             switch (choice1)
             {
@@ -61,7 +68,8 @@
                     Triangle tr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out edges);
                     try
                     {
-                        result = db.Add($"insert into Triangles([Name],[Type],[A],[B],[C],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},{c},'{area}','{perim}',{tops},{edges})");
+                        result = db.Add($"insert into Triangles([Name],[Type],[A],[B],[C],[Area],[Perimeter],[Tops],[Edges]) " +
+                                        $"values('{name}','{type}','{a}','{b}','{c}','{area}','{perim}','{tops}','{edges}')");
 
                         Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                         Console.WriteLine(result);
@@ -95,9 +103,8 @@
                 case 3:
                     Console.Write("Enter any id of triangle to Update: ");
                     int editId = int.Parse(Console.ReadLine());
-
                     Triangle editTr = SetTriangle(out name, out type, out a, out b, out c, out area, out perim, out tops, out edges);
-                    string editQuery = $"Update Triangles SET Name='{name}',Type='{type}',A={a},B={b},C={c} where Id={editId}";
+                    string editQuery = $"Update Triangles SET Name='{name}', Type='{type}', A='{a}', B='{b}', C='{c}', Area='{area}', Perimeter='{perim}' where Id={editId}";
                     try
                     {
                         resultInt = db.Update(editQuery);
@@ -165,9 +172,9 @@
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("1 - Square");
-            Console.WriteLine("2 - Rectangle");
-            Console.WriteLine("3 - Rhomb");
-            Console.WriteLine("4 - Parallelogram");
+            Console.WriteLine("2 - Parallelogram");
+            Console.WriteLine("3 - Rectangle");
+            Console.WriteLine("4 - Rhomb");
             Console.WriteLine("5 - Trapeze");
             Console.WriteLine("0 - Back to main menu");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -188,8 +195,8 @@
             {
                 case 1:
                     string name, type;
-                    float a, area, perim;
-                    int tops, edges, result1 = 0;
+                    double a, area, perim;
+                    int tops, edges;
 
                     Console.Clear();
                     Console.WriteLine("1 - Add new square in the table:");
@@ -197,16 +204,17 @@
                     Console.WriteLine("3 - Edit square by Id");
                     Console.WriteLine("4 - Delete square by Id");
                     Console.WriteLine("5 - Return back");
-                    Console.Write("\nChoose any one of the figures..");
+                    Console.Write("\nPlease make your choice..");
                     int choice1 = int.Parse(Console.ReadLine());
                     switch (choice1)
                     {
                         case 1:
                             Console.Clear();
-                            Square tr = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
+                            Square sq = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"Insert into Squares([Name],[Type],[A],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Squares([Name],[Type],[A],[Area],[Perimeter],[Tops],[Edges])" +
+                                    $"values('{name}','{type}','{a}','{area}','{perim}','{tops}','{edges}')");
 
                                 Console.ForegroundColor = (result == "Insert was Successfull!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
@@ -242,10 +250,11 @@
                             int editId = int.Parse(Console.ReadLine());
 
                             Square editSq = SetSquare(out name, out type, out a, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Squares SET Name='{name}',Type='{type}',A={a} where Id={editId}";
+
+                            string editQuery = $"Update Squares SET Name='{name}',Type='{type}',A='{a}', Area='{area}', Perimeter='{perim}' where Id={editId}";
                             try
                             {
-                                result1 = db.Update(editQuery);
+                                resultInt = db.Update(editQuery);
                             }
                             catch (Exception ex)
                             {
@@ -254,7 +263,7 @@
                                 Console.ResetColor();
                                 Pause();
                             }
-                            if (result1 == 1)
+                            if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("\nSquare has updated successfully!!!");
@@ -264,7 +273,7 @@
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"\nThe method of Update() return {result1}\nSomething went wrong...Try to fix this!");
+                                Console.WriteLine($"\nThe method of Update() return {resultInt}\nSomething went wrong...Try to fix this!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -275,7 +284,7 @@
                             string delQuery = $"Delete from Squares where Id={deleteId}";
                             try
                             {
-                                result1 = db.Delete(delQuery);
+                                resultInt = db.Delete(delQuery);
                             }
                             catch (Exception ex)
                             {
@@ -284,7 +293,7 @@
                                 Console.ResetColor();
                                 Pause();
                             }
-                            if (result1 == 1)
+                            if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("\nSquare has deleted successfully!!!");
@@ -294,7 +303,7 @@
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.WriteLine($"\nThe method of Delete() return {resultInt}\nSomething went wrong...Try to fix this!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -309,7 +318,7 @@
                     Console.WriteLine("3 - Edit parallelogram by Id");
                     Console.WriteLine("4 - Delete parallelogram by Id");
                     Console.WriteLine("5 - Return back");
-                    Console.Write("\nChoose any one of the figures..");
+                    Console.Write("\nPlease make your choice..");
                     choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
@@ -318,9 +327,10 @@
                             Parallelogram pr = SetParallelogram(out name, out type, out a, out b, out h, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"Insert into Parallelograms([Name],[Type],[A],[B],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},{h},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Parallelograms([Name], [Type], [A], [B], [H], [Area], [Perimeter], [Tops], [Edges]) " +
+                                               $"values('{name}', '{type}', '{a}', '{b}', '{h}', '{area}', '{perim}', '{tops}', '{edges}')");
 
-                                Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                                Console.WriteLine("Insert was Successful!Congratulations!!!") ;
                                 Console.WriteLine(result);
                                 Console.ResetColor();
                                 Pause();
@@ -354,10 +364,10 @@
                             int editId = int.Parse(Console.ReadLine());
 
                             Parallelogram editPar = SetParallelogram(out name, out type, out a, out b, out h, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Parallelograms SET Name='{name}',Type='{type}',A={a}, B={b}, H={h},here Id={editId}";
+                            string editQuery = $"Update Parallelograms SET Name='{name}',Type='{type}', A='{a}', B='{b}', H='{h}', Area='{area}', Perimeter='{perim}' where Id={editId}";
                             try
                             {
-                                result1 = db.Update(editQuery);
+                                resultInt = db.Update(editQuery);
                             }
                             catch (Exception ex)
                             {
@@ -366,6 +376,7 @@
                                 Console.ResetColor();
                                 Pause();
                             }
+
                             if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
@@ -387,7 +398,7 @@
                             string delQuery = $"Delete from Parallelograms where Id={deleteId}";
                             try
                             {
-                                result1 = db.Delete(delQuery);
+                                resultInt = db.Delete(delQuery);
                             }
                             catch (Exception ex)
                             {
@@ -406,7 +417,7 @@
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.WriteLine($"\nThe method of Delete() return {resultInt}\nSomething went wrong...Try to fix this!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -420,7 +431,7 @@
                     Console.WriteLine("3 - Edit rectangle by Id");
                     Console.WriteLine("4 - Delete rectangle by Id");
                     Console.WriteLine("5 - Return back");
-                    Console.Write("\nChoose any one of the figures..");
+                    Console.Write("\nPlease make your choice..");
                     choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
@@ -429,7 +440,8 @@
                             Rectangle rct = SetRectangle(out name, out type, out a, out b, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"Insert into Rectangles([Name],[Type],[A],[B],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Rectangles([Name],[Type],[A],[B],[Area],[Perimeter],[Tops],[Edges])" +
+                                    $"values('{name}','{type}','{a}','{b}','{area}','{perim}','{tops}','{edges}')");
 
                                 Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
@@ -465,10 +477,10 @@
                             int editId = int.Parse(Console.ReadLine());
 
                             Rectangle editRct = SetRectangle(out name, out type, out a, out b, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Rectangles SET Name='{name}',Type='{type}',A={a}, B={b}, here Id={editId}";
+                            string editQuery = $"Update Rectangles SET Name='{name}',Type='{type}',A='{a}', B='{b}',Area='{area}', Perimeter='{perim}' where Id={editId}";
                             try
                             {
-                                result1 = db.Update(editQuery);
+                                resultInt = db.Update(editQuery);
                             }
                             catch (Exception ex)
                             {
@@ -498,7 +510,7 @@
                             string delQuery = $"Delete from Rectangles where Id={deleteId}";
                             try
                             {
-                                result1 = db.Delete(delQuery);
+                                resultInt = db.Delete(delQuery);
                             }
                             catch (Exception ex)
                             {
@@ -517,7 +529,7 @@
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.WriteLine($"\nThe method of Delete() return {resultInt}\nSomething went wrong...Try to fix this!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -531,7 +543,7 @@
                     Console.WriteLine("3 - Edit rhomb by Id");
                     Console.WriteLine("4 - Delete rhomb by Id");
                     Console.WriteLine("5 - Return back");
-                    Console.Write("\nChoose any one of the figures..");
+                    Console.Write("\nPlease make your choice..");
                     choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
@@ -540,7 +552,8 @@
                             Rhomb rhmb = SetRhomb(out name, out type, out a, out h, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"Insert into Rhombs([Name],[Type],[A],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{h},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Rhombs([Name],[Type],[A],[H],[Area],[Perimeter],[Tops],[Edges])" +
+                                    $"values('{name}','{type}','{a}','{h}','{area}','{perim}','{tops}','{edges}')");
 
                                 Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
@@ -557,8 +570,7 @@
                             break;
                         case 2:
                             Console.Clear();
-                            string conn = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
-                            List<Rhomb> list = ReadFiguresFromDB.ReadAllRhombs(conn);
+                            List<Rhomb> list = ReadFiguresFromDB.ReadAllRhombs(AllFigures_Storage.connect);
                             for (int i = 0; i < list.Count; i++)
                             {
                                 Console.WriteLine(new string('-', 120));
@@ -576,10 +588,10 @@
                             int editId = int.Parse(Console.ReadLine());
 
                             Rhomb editRhmb = SetRhomb(out name, out type, out a, out h, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Rhombs SET Name='{name}',Type='{type}',A={a}, H={h}, here Id={editId}";
+                            string editQuery = $"Update Rhombs SET Name='{name}',Type='{type}',A='{a}', H='{h}',Area='{area}', Perimeter='{perim}' where Id={editId}";
                             try
                             {
-                                result1 = db.Update(editQuery);
+                                resultInt = db.Update(editQuery);
                             }
                             catch (Exception ex)
                             {
@@ -609,7 +621,7 @@
                             string delQuery = $"Delete from Rhombs where Id={deleteId}";
                             try
                             {
-                                result1 = db.Delete(delQuery);
+                                resultInt = db.Delete(delQuery);
                             }
                             catch (Exception ex)
                             {
@@ -628,7 +640,7 @@
                             else
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine($"\nThe method of Delete() return {result}\nSomething went wrong...Try to fix this!");
+                                Console.WriteLine($"\nThe method of Delete() return {resultInt}\nSomething went wrong...Try to fix this!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -642,7 +654,7 @@
                     Console.WriteLine("3 - Edit trapeze by Id");
                     Console.WriteLine("4 - Delete trapeze by Id");
                     Console.WriteLine("5 - Return back");
-                    Console.Write("\nChoose any one of the figures..");
+                    Console.Write("\nPlease make your choice..");
                     choice = int.Parse(Console.ReadLine());
                     switch (choice)
                     {
@@ -651,7 +663,8 @@
                             Trapeze trpz = SetTrapeze(out name, out type, out a, out b, out c, out d, out h, out area, out perim, out tops, out edges);
                             try
                             {
-                                result = db.Add($"Insert into Trapezes([Name],[Type],[A],[B],[C],[D],[H],[Area],[Perimeter],[Tops],[Edges]) values('{name}','{type}',{a},{b},{c},{d},{h},'{area}','{perim}',{tops},{edges})");
+                                result = db.Add($"Insert into Trapezes([Name],[Type],[A],[B],[C],[D],[H],[Area],[Perimeter],[Tops],[Edges])" + 
+                                    $"values('{name}','{type}','{a}','{b}','{c}','{d}','{h}','{area}','{perim}','{tops}','{edges}')");
 
                                 Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                                 Console.WriteLine(result);
@@ -687,10 +700,10 @@
                             int editId = int.Parse(Console.ReadLine());
 
                             Trapeze editTrpz = SetTrapeze(out name, out type, out a, out b, out c, out d, out h, out area, out perim, out tops, out edges);
-                            string editQuery = $"Update Trapezes SET Name='{name}',Type='{type}',A={a}, B={b}, C={c}, D={d}, H={h}, here Id={editId}";
+                            string editQuery = $"Update Trapezes SET Name='{name}',Type='{type}',A='{a}', B='{b}', C='{c}', D='{d}', H='{h}', Area='{area}', Perimeter='{perim}' where Id={editId}";
                             try
                             {
-                                result1 = db.Update(editQuery);
+                                resultInt = db.Update(editQuery);
                             }
                             catch (Exception ex)
                             {
@@ -702,7 +715,7 @@
                             if (resultInt == 1)
                             {
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\nRTrapezes has updated successfully!!!");
+                                Console.WriteLine("\nTrapezes has updated successfully!!!");
                                 Console.ResetColor();
                                 Pause();
                             }
@@ -720,7 +733,7 @@
                             string delQuery = $"Delete from Trapezes where Id={deleteId}";
                             try
                             {
-                                result1 = db.Delete(delQuery);
+                                resultInt = db.Delete(delQuery);
                             }
                             catch (Exception ex)
                             {
@@ -751,8 +764,8 @@
         #endregion
 
         #region Set Triangle (Method):
-        public static Triangle SetTriangle(out string name, out string type, out float a, out float b, out float c,
-       out float area, out float perim, out int tops, out int edges)
+        public static Triangle SetTriangle(out string name, out string type, out double a, out double b, out double c,
+       out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Triangle: ");
             name = Console.ReadLine();
@@ -762,12 +775,11 @@
 
             Console.Write("Enter 3 sides of triangle:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("b: ");
-
-            b = float.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("c: ");
-            c = float.Parse(Console.ReadLine());
+            c = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Triangle triangle = new Triangle(a, b, c);
             triangle.Name = name;
@@ -782,8 +794,8 @@
         #endregion
 
         #region Set Square (Method):
-        public static Square SetSquare(out string name, out string type, out float a,
-           out float area, out float perim, out int tops, out int edges)
+        public static Square SetSquare(out string name, out string type, out double a,
+           out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Square: ");
             name = Console.ReadLine();
@@ -793,7 +805,7 @@
 
             Console.Write("Enter a side of Square:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Square square = new Square(a);
             square.Name = name;
@@ -808,8 +820,8 @@
         #endregion
 
         #region Set Rectangle (Method):
-        public static Rectangle SetRectangle(out string name, out string type, out float a, out float b,
-           out float area, out float perim, out int tops, out int edges)
+        public static Rectangle SetRectangle(out string name, out string type, out double a, out double b,
+           out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Rectangle: ");
             name = Console.ReadLine();
@@ -819,10 +831,10 @@
 
             Console.Write("Enter a side of Rectangle:\n");
             Console.Write("a: ");
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter b side of Rectangle:\n");
             Console.Write("b: ");
-            a = float.Parse(Console.ReadLine());
-            b = float.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Rectangle rectangle = new Rectangle(a, b);
             rectangle.Name = name;
@@ -837,8 +849,8 @@
         #endregion
 
         #region Set Parallelogram (Method):
-        public static Parallelogram SetParallelogram(out string name, out string type, out float a, out float b,
-           out float h, out float area, out float perim, out int tops, out int edges)
+        public static Parallelogram SetParallelogram(out string name, out string type, out double a, out double b,
+           out double h, out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Parallelogram: ");
             name = Console.ReadLine();
@@ -846,15 +858,17 @@
             Console.Write("Set Type of Parallelogram: ");
             type = Console.ReadLine();
 
-            Console.Write("Enter a side of Rectangle:\n");
+            Console.Write("Enter a side of Parallelogram:\n");
             Console.Write("a: ");
-            Console.Write("Enter b side of Rectangle:\n");
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Console.Write("Enter b side of Parallelogram:\n");
             Console.Write("b: ");
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
             Console.Write("Enter h:\n");
             Console.Write("h: ");
-            a = float.Parse(Console.ReadLine());
-            b = float.Parse(Console.ReadLine());
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Parallelogram parallelogram = new Parallelogram(a, b, h);
             parallelogram.Name = name;
@@ -869,8 +883,8 @@
         #endregion
 
         #region Set Rhomb (Method):
-        public static Rhomb SetRhomb(out string name, out string type, out float a, out float h,
-           out float area, out float perim, out int tops, out int edges)
+        public static Rhomb SetRhomb(out string name, out string type, out double a, out double h,
+           out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Rhomb: ");
             name = Console.ReadLine();
@@ -880,12 +894,14 @@
 
             Console.Write("Enter a side of Rhomb:\n");
             Console.Write("a: ");
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter h:\n");
             Console.Write("h: ");
-            a = float.Parse(Console.ReadLine());
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Rhomb rhomb = new Rhomb(a, h);
+            rhomb.A = a;
+            rhomb.H = h;
             rhomb.Name = name;
             rhomb.Type = type;
             area = rhomb.Area();
@@ -898,8 +914,8 @@
         #endregion
 
         #region Set Trapeze (Method):
-        public static Trapeze SetTrapeze(out string name, out string type, out float a, out float b,
-           out float c, out float d, out float h, out float area, out float perim, out int tops, out int edges)
+        public static Trapeze SetTrapeze(out string name, out string type, out double a, out double b,
+           out double c, out double d, out double h, out double area, out double perim, out int tops, out int edges)
         {
             Console.Write("Set Name of Trapeze: ");
             name = Console.ReadLine();
@@ -909,19 +925,19 @@
 
             Console.Write("Enter a side of Trapeze:\n");
             Console.Write("a: ");
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter b side of Trapeze:\n");
             Console.Write("b: ");
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter c side of Trapeze:\n");
             Console.Write("c: ");
+            c = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter d side of Trapeze:\n");
             Console.Write("d: ");
+            d = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("Enter h of Trapeze:\n");
             Console.Write("h: ");
-            a = float.Parse(Console.ReadLine());
-            b = float.Parse(Console.ReadLine());
-            c = float.Parse(Console.ReadLine());
-            d = float.Parse(Console.ReadLine());
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Trapeze trapeze = new Trapeze(a, b, c, d, h);
             trapeze.Name = name;
@@ -936,7 +952,7 @@
         #endregion
 
         #region Pause (Method):
-        static void Pause()
+        public static void Pause()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("\n\n\t\t\t\t\t\tPress any key to continue...");
@@ -946,7 +962,7 @@
         #endregion
 
         #region Color generator (Method):
-        static ConsoleColor[] RandColors()
+        public static ConsoleColor[] RandColors()
         {
             return new ConsoleColor[]
             {

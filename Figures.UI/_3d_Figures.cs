@@ -5,13 +5,14 @@
     using System.Configuration;
     using Figures.Logic;
     using FiguresApp.Figures_Entities;
+    using System.Globalization;
     static class _3d_Figures
     {
         #region Fields:
         static Random rand = new Random();
         static string result = "";
         static string name, type;
-        static float a, b, c, h, l, area, volume;
+        static double a, b, c, h, l, area, volume;
         static int tops, edges, sides, resultInt = 0, choice;
         #endregion
 
@@ -24,7 +25,7 @@
             Console.WriteLine("3 - Edit cube by Id");
             Console.WriteLine("4 - Delete cube by Id");
             Console.WriteLine("5 - Return back");
-            Console.Write("\nChoose any one of the figures..");
+            Console.Write("\nPlease make your choice..");
             int choice1 = int.Parse(Console.ReadLine());
             switch (choice1)
             {
@@ -33,9 +34,9 @@
                     Cube cb = SetCube(out name, out type, out a, out area, out volume, out tops, out edges, out sides);
                     try
                     {
-                        result = db.Add($"Insert into Cubes([Name],[Type],[A],[Volume],[Area],[Tops],[Edges],[Sides]) values('{name}','{type}',{a},'{volume}','{area}',{tops},{edges},{sides})");
-
-                        Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                        result = db.Add($"Insert into Cubes([Name],[Type],[A],[Volume],[Area],[Tops],[Edges],[Sides])" +
+                            $"values('{name}','{type}','{a}','{volume}','{area}','{tops}','{edges}','{sides}')");
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(result);
                         Console.ResetColor();
                         Pause();
@@ -69,7 +70,7 @@
                     int editId = int.Parse(Console.ReadLine());
 
                     Cube editCb = SetCube(out name, out type, out a, out area, out volume, out tops, out edges, out sides);
-                    string editQuery = $"Update Cubes SET Name='{name}',Type='{type}',A={a} where Id={editId}";
+                    string editQuery = $"Update Cubes SET Name='{name}',Type='{type}',A='{a}', Volume='{volume}', Area='{area}' where Id={editId}";
                     try
                     {
                         resultInt = db.Update(editQuery);
@@ -140,7 +141,7 @@
             Console.WriteLine("3 - Edit parallelepiped by Id");
             Console.WriteLine("4 - Delete parallelepiped by Id");
             Console.WriteLine("5 - Return back");
-            Console.Write("\nChoose any one of the figures..");
+            Console.Write("\nPlease make your choice..");
             int choice1 = int.Parse(Console.ReadLine());
             switch (choice1)
             {
@@ -149,9 +150,9 @@
                     Parallelepiped prll = SetParallelepiped(out name, out type, out a, out b, out h, out area, out volume, out tops, out edges, out sides);
                     try
                     {
-                        result = db.Add($"Insert into Parallelepipeds([Name],[Type],[A],[B],[H],[Volume],[Area],[Tops],[Edges],[Sides]) values('{name}','{type}',{a},{b},{h},'{volume}','{area}',{tops},{edges},{sides})");
-
-                        Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        result = db.Add($"\n\nInsert into Parallelepipeds([Name],[Type],[A],[B],[H],[Volume],[Area],[Tops],[Edges],[Sides])" +
+                            $"values('{name}','{type}','{a}','{b}','{h}','{volume}','{area}','{tops}','{edges}','{sides}')");
                         Console.WriteLine(result);
                         Console.ResetColor();
                         Pause();
@@ -185,7 +186,7 @@
                     int editId = int.Parse(Console.ReadLine());
 
                     Parallelepiped editPrll = SetParallelepiped(out name, out type, out a, out b, out h, out area, out volume, out tops, out edges, out sides);
-                    string editQuery = $"Update Parallelepipeds SET Name='{name}',Type='{type}',A={a}, B={b}, H={h} where Id={editId}";
+                    string editQuery = $"Update Parallelepipeds SET Name='{name}',Type='{type}',A='{a}', B='{b}', H='{h}', Volume='{volume}', Area='{area}' where Id={editId}";
                     try
                     {
                         resultInt = db.Update(editQuery);
@@ -256,7 +257,7 @@
             Console.WriteLine("3 - Edit prism by Id");
             Console.WriteLine("4 - Delete prism by Id");
             Console.WriteLine("5 - Return back");
-            Console.Write("\nChoose any one of the figures..");
+            Console.Write("\nPlease make your choice..");
             int choice1 = int.Parse(Console.ReadLine());
             switch (choice1)
             {
@@ -265,7 +266,8 @@
                     Prism prsm = SetPrism(out name, out type, out a, out b, out c, out h, out area, out volume, out tops, out edges, out sides);
                     try
                     {
-                        result = db.Add($"Insert into Prisms([Name],[Type],[A],[B],[C],[H],[Volume],[Area],[Tops],[Edges],[Sides]) values('{name}','{type}',{a},{b},{c},{h},'{volume}','{area}',{tops},{edges},{sides})");
+                        result = db.Add($"Insert into Prisms([Name],[Type],[A],[B],[C],[H],[Volume],[Area],[Tops],[Edges],[Sides])" +
+                            $"values('{name}','{type}','{a}','{b}','{c}','{h}','{volume}','{area}','{tops}','{edges}','{sides}')");
 
                         Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
                         Console.WriteLine(result);
@@ -301,7 +303,7 @@
                     int editId = int.Parse(Console.ReadLine());
 
                     Prism editPrsm = SetPrism(out name, out type, out a, out b, out c, out h, out area, out volume, out tops, out edges, out sides);
-                    string editQuery = $"Update Prisms SET Name='{name}',Type='{type}',A={a}, B={b}, C={c}, H={h} where Id={editId}";
+                    string editQuery = $"Update Prisms SET Name='{name}',Type='{type}',A='{a}', B='{b}', C='{c}', H='{h}', Volume='{volume}', Area='{area}' where Id={editId}";
                     try
                     {
                         resultInt = db.Update(editQuery);
@@ -372,7 +374,7 @@
             Console.WriteLine("3 - Edit pyramid by Id");
             Console.WriteLine("4 - Delete pyramid by Id");
             Console.WriteLine("5 - Return back");
-            Console.Write("\nChoose any one of the figures..");
+            Console.Write("\nPlease make your choice..");
             int choice1 = int.Parse(Console.ReadLine());
             switch (choice1)
             {
@@ -381,9 +383,10 @@
                     Pyramid prmd = SetPyramid(out name, out type, out a, out b, out h, out l, out area, out volume, out tops, out edges, out sides);
                     try
                     {
-                        result = db.Add($"Insert into Pyramids([Name],[Type],[A],[B],[H],[L],[Volume],[Area],[Tops],[Edges],[Sides]) values('{name}','{type}',{a},{b},{h},{l},'{volume}','{area}',{tops},{edges},{sides})");
+                        result = db.Add($"Insert into Pyramids([Name], [Type], [A], [B], [H], [L], [Volume], [Area], [Sides], [Tops], [Edges])" +
+                            $"values('{name}', '{type}', '{a}', '{b}', '{h}', '{l}', '{volume}', '{area}', '{sides}', '{tops}', '{edges}')");
 
-                        Console.ForegroundColor = (result == "Insert was Successful!Congratulations!!!") ? ConsoleColor.Green : ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(result);
                         Console.ResetColor();
                         Pause();
@@ -417,7 +420,7 @@
                     int editId = int.Parse(Console.ReadLine());
 
                     Pyramid editPrmd = SetPyramid(out name, out type, out a, out b, out l, out h, out area, out volume, out tops, out edges, out sides);
-                    string editQuery = $"Update Pyramids SET Name='{name}',Type='{type}',A={a}, B={b}, L={l}, H={h} where Id={editId}";
+                    string editQuery = $"Update Pyramids SET Name='{name}',Type='{type}',A='{a}', B='{b}', L='{l}', H='{h}', Volume='{volume}', Area='{area}' where Id={editId}";
                     try
                     {
                         resultInt = db.Update(editQuery);
@@ -480,8 +483,8 @@
         #endregion
 
         #region Set Cube (Method):
-        public static Cube SetCube(out string name, out string type, out float a,
-        out float area, out float volume, out int tops, out int edges, out int sides)
+        public static Cube SetCube(out string name, out string type, out double a,
+        out double area, out double volume, out int tops, out int edges, out int sides)
         {
             Console.Write("Set Name of Cube: ");
             name = Console.ReadLine();
@@ -491,7 +494,7 @@
 
             Console.Write("Enter one side of cube:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Cube cube = new Cube(a);
             cube.Name = name;
@@ -507,8 +510,8 @@
         #endregion
 
         #region Set Parallelepiped (Method):
-        public static Parallelepiped SetParallelepiped(out string name, out string type, out float a, out float b,
-        out float h, out float area, out float volume, out int tops, out int edges, out int sides)
+        public static Parallelepiped SetParallelepiped(out string name, out string type, out double a, out double b,
+        out double h, out double area, out double volume, out int tops, out int edges, out int sides)
         {
             Console.Write("Set Name of Parallelepiped: ");
             name = Console.ReadLine();
@@ -518,13 +521,14 @@
 
             Console.Write("Enter two sides of parallelepiped base and height:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("b: ");
-            b = float.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("h: ");
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Parallelepiped parallelepiped = new Parallelepiped(a, b, h);
+
             parallelepiped.Name = name;
             parallelepiped.Type = type;
             area = parallelepiped.Area();
@@ -533,13 +537,16 @@
             edges = parallelepiped.QuantityOfEdges();
             sides = parallelepiped.QuantityOfSides();
 
+            parallelepiped.Areaa = area;
+            parallelepiped.Volumee = volume;
+
             return parallelepiped;
         }
         #endregion
 
         #region Set Prism (Method):
-        public static Prism SetPrism(out string name, out string type, out float a, out float b, out float c,
-        out float h, out float area, out float volume, out int tops, out int edges, out int sides)
+        public static Prism SetPrism(out string name, out string type, out double a, out double b, out double c,
+        out double h, out double area, out double volume, out int tops, out int edges, out int sides)
         {
             Console.Write("Set Name of Prism: ");
             name = Console.ReadLine();
@@ -549,13 +556,13 @@
 
             Console.Write("Enter three sides of prism base and height:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("b: ");
-            b = float.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("c: ");
-            c = float.Parse(Console.ReadLine());
+            c = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("h: ");
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Prism prism = new Prism(a, b, c, h);
             prism.Name = name;
@@ -571,8 +578,8 @@
         #endregion
 
         #region Set Pyramid (Method):
-        public static Pyramid SetPyramid(out string name, out string type, out float a, out float b, out float h,
-        out float l, out float area, out float volume, out int tops, out int edges, out int sides)
+        public static Pyramid SetPyramid(out string name, out string type, out double a, out double b, out double h,
+        out double l, out double area, out double volume, out int tops, out int edges, out int sides)
         {
             Console.Write("Set Name of Pyramid: ");
             name = Console.ReadLine();
@@ -582,15 +589,19 @@
 
             Console.Write("Enter two sides of pyramid base, height and apophema:\n");
             Console.Write("a: ");
-            a = float.Parse(Console.ReadLine());
+            a = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("b: ");
-            b = float.Parse(Console.ReadLine());
+            b = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("h: ");
-            h = float.Parse(Console.ReadLine());
+            h = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
             Console.Write("l: ");
-            l = float.Parse(Console.ReadLine());
+            l = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Pyramid pyramid = new Pyramid(a, b, l, h);
+            Pyramid pyramid = new Pyramid();
+            pyramid.A = a;
+            pyramid.B = b;
+            pyramid.L = l;
+            pyramid.H = h;
             pyramid.Name = name;
             pyramid.Type = type;
             area = pyramid.Area();

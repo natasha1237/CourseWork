@@ -1,8 +1,8 @@
 ﻿namespace Figures.Logic
 {
-    using FiguresApp.Figures_Entities;
-    using System.Collections.Generic;
     using System.Data.SqlClient;
+    using System.Collections.Generic;
+    using FiguresApp.Figures_Entities;
 
     public static class ReadFiguresFromDB
     {
@@ -32,11 +32,11 @@
                             triangle.Id = int.Parse(dReader["Id"].ToString());
                             triangle.Name = dReader["Name"].ToString();
                             triangle.Type = dReader["Type"].ToString();
-                            triangle.A = float.Parse(dReader["A"].ToString());
-                            triangle.B = float.Parse(dReader["B"].ToString());
-                            triangle.C = float.Parse(dReader["C"].ToString());
-                            triangle.Areaa = float.Parse(dReader["Area"].ToString());
-                            triangle.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            triangle.A = double.Parse(dReader["A"].ToString());
+                            triangle.B = double.Parse(dReader["B"].ToString());
+                            triangle.C = double.Parse(dReader["C"].ToString());
+                            triangle.Areaa = double.Parse(dReader["Area"].ToString());
+                            triangle.Perim = double.Parse(dReader["Perimeter"].ToString());
                             triangle.Tops = int.Parse(dReader["Tops"].ToString());
                             triangle.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -75,13 +75,13 @@
                             trapeze.Id = int.Parse(dReader["Id"].ToString());
                             trapeze.Name = dReader["Name"].ToString();
                             trapeze.Type = dReader["Type"].ToString();
-                            trapeze.A = float.Parse(dReader["A"].ToString());
-                            trapeze.B = float.Parse(dReader["B"].ToString());
-                            trapeze.C = float.Parse(dReader["C"].ToString());
-                            trapeze.D = float.Parse(dReader["D"].ToString());
-                            trapeze.H = float.Parse(dReader["h"].ToString());
-                            trapeze.Areaa = float.Parse(dReader["Area"].ToString());
-                            trapeze.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            trapeze.A = double.Parse(dReader["A"].ToString());
+                            trapeze.B = double.Parse(dReader["B"].ToString());
+                            trapeze.C = double.Parse(dReader["C"].ToString());
+                            trapeze.D = double.Parse(dReader["D"].ToString());
+                            trapeze.H = double.Parse(dReader["h"].ToString());
+                            trapeze.Areaa = double.Parse(dReader["Area"].ToString());
+                            trapeze.Perim = double.Parse(dReader["Perimeter"].ToString());
                             trapeze.Tops = int.Parse(dReader["Tops"].ToString());
                             trapeze.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -120,9 +120,9 @@
                             square.Id = int.Parse(dReader["Id"].ToString());
                             square.Name = dReader["Name"].ToString();
                             square.Type = dReader["Type"].ToString();
-                            square.A = float.Parse(dReader["A"].ToString());
-                            square.Areaa = float.Parse(dReader["Area"].ToString());
-                            square.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            square.A = double.Parse(dReader["A"].ToString());
+                            square.Areaa = double.Parse(dReader["Area"].ToString());
+                            square.Perim = double.Parse(dReader["Perimeter"].ToString());
                             square.Tops = int.Parse(dReader["Tops"].ToString());
                             square.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -161,10 +161,10 @@
                             rhomb.Id = int.Parse(dReader["Id"].ToString());
                             rhomb.Name = dReader["Name"].ToString();
                             rhomb.Type = dReader["Type"].ToString();
-                            rhomb.A = float.Parse(dReader["A"].ToString());
-                            rhomb.H = float.Parse(dReader["H"].ToString());
-                            rhomb.Areaa = float.Parse(dReader["Area"].ToString());
-                            rhomb.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            rhomb.A = double.Parse(dReader["A"].ToString());
+                            rhomb.H = double.Parse(dReader["H"].ToString());
+                            rhomb.Areaa = double.Parse(dReader["Area"].ToString());
+                            rhomb.Perim = double.Parse(dReader["Perimeter"].ToString());
                             rhomb.Tops = int.Parse(dReader["Tops"].ToString());
                             rhomb.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -203,10 +203,10 @@
                             rectangle.Id = int.Parse(dReader["Id"].ToString());
                             rectangle.Name = dReader["Name"].ToString();
                             rectangle.Type = dReader["Type"].ToString();
-                            rectangle.A = float.Parse(dReader["A"].ToString());
-                            rectangle.B = float.Parse(dReader["B"].ToString());
-                            rectangle.Areaa = float.Parse(dReader["Area"].ToString());
-                            rectangle.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            rectangle.A = double.Parse(dReader["A"].ToString());
+                            rectangle.B = double.Parse(dReader["B"].ToString());
+                            rectangle.Areaa = double.Parse(dReader["Area"].ToString());
+                            rectangle.Perim = double.Parse(dReader["Perimeter"].ToString());
                             rectangle.Tops = int.Parse(dReader["Tops"].ToString());
                             rectangle.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -245,11 +245,11 @@
                             parallelogram.Id = int.Parse(dReader["Id"].ToString());
                             parallelogram.Name = dReader["Name"].ToString();
                             parallelogram.Type = dReader["Type"].ToString();
-                            parallelogram.A = float.Parse(dReader["A"].ToString());
-                            parallelogram.B = float.Parse(dReader["B"].ToString());
-                            parallelogram.H = float.Parse(dReader["H"].ToString());
-                            parallelogram.Areaa = float.Parse(dReader["Area"].ToString());
-                            parallelogram.Perim = float.Parse(dReader["Perimeter"].ToString());
+                            parallelogram.A = double.Parse(dReader["A"].ToString());
+                            parallelogram.B = double.Parse(dReader["B"].ToString());
+                            parallelogram.H = double.Parse(dReader["H"].ToString());
+                            parallelogram.Areaa = double.Parse(dReader["Area"].ToString());
+                            parallelogram.Perim = double.Parse(dReader["Perimeter"].ToString());
                             parallelogram.Tops = int.Parse(dReader["Tops"].ToString());
                             parallelogram.Edges = int.Parse(dReader["Edges"].ToString());
 
@@ -258,7 +258,7 @@
                     }
                 }
             }
-            catch { }
+            catch(System.Exception ex) { string s = ex.Message; }
             finally
             {
                 dReader.Close();
@@ -288,12 +288,12 @@
                             cube.Id = int.Parse(dReader["Id"].ToString());
                             cube.Name = dReader["Name"].ToString();
                             cube.Type = dReader["Type"].ToString();
-                            cube.A = float.Parse(dReader["A"].ToString());
-                            cube.Volume = float.Parse(dReader["Volume"].ToString());
-                            cube.Areaa = float.Parse(dReader["Area"].ToString());
-                            cube.Tops = int.Parse(dReader["Tops"].ToString());
-                            cube.Edges = int.Parse(dReader["Edges"].ToString());
-                            cube.Sides = int.Parse(dReader["Sides"].ToString());
+                            cube.A = double.Parse(dReader["A"].ToString());
+                            cube.Volumee = double.Parse(dReader["Volume"].ToString());
+                            cube.Areaa = double.Parse(dReader["Area"].ToString());
+                            cube.Sides = System.Convert.ToInt32(dReader["Sides"].ToString());
+                            cube.Tops = System.Convert.ToInt32(dReader["Tops"].ToString());
+                            cube.Edges = System.Convert.ToInt32(dReader["Edges"].ToString());
                             cb.Add(cube);
                         }
                     }
@@ -329,11 +329,11 @@
                             parallelepiped.Id = int.Parse(dReader["Id"].ToString());
                             parallelepiped.Name = dReader["Name"].ToString();
                             parallelepiped.Type = dReader["Type"].ToString();
-                            parallelepiped.A = float.Parse(dReader["A"].ToString());
-                            parallelepiped.B = float.Parse(dReader["B"].ToString());
-                            parallelepiped.Height = float.Parse(dReader["Height"].ToString());
-                            parallelepiped.Volume = float.Parse(dReader["Volume"].ToString());
-                            parallelepiped.Areaa = float.Parse(dReader["Area"].ToString());
+                            parallelepiped.A = double.Parse(dReader["A"].ToString());
+                            parallelepiped.B = double.Parse(dReader["B"].ToString());
+                            parallelepiped.H = double.Parse(dReader["H"].ToString());
+                            parallelepiped.Volumee = double.Parse(dReader["Volume"].ToString());
+                            parallelepiped.Areaa = double.Parse(dReader["Area"].ToString());
                             parallelepiped.Tops = int.Parse(dReader["Tops"].ToString());
                             parallelepiped.Edges = int.Parse(dReader["Edges"].ToString());
                             parallelepiped.Sides = int.Parse(dReader["Sides"].ToString());
@@ -372,12 +372,12 @@
                             prism.Id = int.Parse(dReader["Id"].ToString());
                             prism.Name = dReader["Name"].ToString();
                             prism.Type = dReader["Type"].ToString();
-                            prism.A = float.Parse(dReader["A"].ToString());
-                            prism.B = float.Parse(dReader["B"].ToString());
-                            prism.C = float.Parse(dReader["C"].ToString());
-                            prism.Height = float.Parse(dReader["Height"].ToString());
-                            prism.Volume = float.Parse(dReader["Volume"].ToString());
-                            prism.Areaa = float.Parse(dReader["Area"].ToString());
+                            prism.A = double.Parse(dReader["A"].ToString());
+                            prism.B = double.Parse(dReader["B"].ToString());
+                            prism.C = double.Parse(dReader["C"].ToString());
+                            prism.H = double.Parse(dReader["H"].ToString());
+                            prism.Volumee = double.Parse(dReader["Volume"].ToString());
+                            prism.Areaa = double.Parse(dReader["Area"].ToString());
                             prism.Tops = int.Parse(dReader["Tops"].ToString());
                             prism.Edges = int.Parse(dReader["Edges"].ToString());
                             prism.Sides = int.Parse(dReader["Sides"].ToString());
@@ -416,11 +416,12 @@
                             pyramid.Id = int.Parse(dReader["Id"].ToString());
                             pyramid.Name = dReader["Name"].ToString();
                             pyramid.Type = dReader["Type"].ToString();
-                            pyramid.A = float.Parse(dReader["A"].ToString());
-                            pyramid.B = float.Parse(dReader["B"].ToString());
-                            pyramid.Height = float.Parse(dReader["Height"].ToString());
-                            pyramid.Volume = float.Parse(dReader["Volume"].ToString());
-                            pyramid.Areaa = float.Parse(dReader["Area"].ToString());
+                            pyramid.A = double.Parse(dReader["A"].ToString());
+                            pyramid.B = double.Parse(dReader["B"].ToString());
+                            pyramid.H = double.Parse(dReader["H"].ToString());
+                            pyramid.L = double.Parse(dReader["L"].ToString());
+                            pyramid.Volumee = double.Parse(dReader["Volume"].ToString());
+                            pyramid.Areaa = double.Parse(dReader["Area"].ToString());
                             pyramid.Tops = int.Parse(dReader["Tops"].ToString());
                             pyramid.Edges = int.Parse(dReader["Edges"].ToString());
                             pyramid.Sides = int.Parse(dReader["Sides"].ToString());

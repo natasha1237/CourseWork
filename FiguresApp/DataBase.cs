@@ -1,9 +1,9 @@
 ﻿namespace FiguresApp.Figures_Entities
 {
-    using Figures.EntityData;
-    using FiguresApp.Figures_Interfaces;
     using System.Data;
+    using Figures.EntityData;
     using System.Data.SqlClient;
+    using FiguresApp.Figures_Interfaces;
 
     public class DataBase : IDataBase
     {

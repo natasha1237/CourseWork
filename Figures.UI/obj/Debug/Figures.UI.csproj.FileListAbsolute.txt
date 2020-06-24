@@ -12,3 +12,16 @@ C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.UI\obj\Debug\Figures.
 C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.UI\obj\Debug\Figures.UI.csproj.CopyComplete
 C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.UI\obj\Debug\Figures.UI.exe
 C:\Users\natal\source\repos\Figures New\FiguresApp\Figures.UI\obj\Debug\Figures.UI.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\Figures.UI.exe.config
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\Figures.UI.exe
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\Figures.UI.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\Figures.Logic.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\FiguresApp.dll
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\Figures.Logic.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\FiguresApp.pdb
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\bin\Debug\FiguresApp.dll.config
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\obj\Debug\Figures.UI.csprojAssemblyReference.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\obj\Debug\Figures.UI.csproj.CoreCompileInputs.cache
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\obj\Debug\Figures.UI.csproj.CopyComplete
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\obj\Debug\Figures.UI.exe
+C:\Users\natal\source\repos\Figures New\FiguresApp\CourseWork\Figures.UI\obj\Debug\Figures.UI.pdb
